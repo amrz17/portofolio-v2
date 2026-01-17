@@ -1,0 +1,131 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
+import Link from 'next/link'
+
+import { MailIcon, MenuIcon } from 'lucide-react'
+
+import { ModeToggle } from '@/components/layout/mode-toggle'
+
+import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+
+import MenuDropdown from '@/components/blocks/menu-dropdown'
+import MenuNavigation from '@/components/blocks/menu-navigation'
+import type { NavigationSection } from '@/components/blocks/menu-navigation'
+
+import { cn } from '@/lib/utils'
+
+type HeaderProps = {
+  navigationData: NavigationSection[]
+  className?: string
+}
+
+const Header = ({ navigationData, className }: HeaderProps) => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const [activeSection, setActiveSection] = useState('home')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section[id]')
+      const scrollPosition = window.scrollY + window.innerHeight / 2
+
+      for (const section of sections) {
+        const element = section as HTMLElement
+        const { offsetTop, offsetHeight } = element
+
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (element.id !== activeSection) {
+            setActiveSection(element.id)
+          }
+
+          break
+        }
+      }
+    }
+
+    // Initial check
+    handleScroll()
+
+    // Listen for scroll events
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [activeSection])
+
+  return (
+    <header
+      className={cn(
+        'bg-background sticky top-0 z-50 h-16 w-full border-b-1 transition-all duration-300',
+        {
+          'shadow-sm': isScrolled
+        },
+        className
+      )}
+    >
+      <div className='mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8'>
+        {/* </Link> */}
+        <Link href='/' className='flex items-center gap-1 text-2xl font-bold md:text-3xl dark:text-white'>
+          &lt; <span className='text-green-400'>aMer</span> &#47;&gt;
+        </Link>
+
+        {/* Navigation */}
+        <MenuNavigation navigationData={navigationData} activeSection={activeSection} className='max-lg:hidden' />
+
+        {/* Actions */}
+        <div className='flex gap-3'>
+          <ModeToggle />
+          {/* <Button variant='outline' className='max-sm:hidden' asChild>
+            <Link href='#get-in-touch'>Get in Touch</Link>
+          </Button> */}
+
+          {/* Navigation for small screens */}
+          <div className='flex gap-3'>
+            {/* <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant='outline' size='icon' className='sm:hidden' asChild>
+                  <Link href='#get-in-touch'>
+                    <MailIcon />
+                    <span className='sr-only'>Get in Touch</span>
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Get in Touch</TooltipContent>
+            </Tooltip> */}
+
+            <MenuDropdown
+              align='end'
+              navigationData={navigationData}
+              activeSection={activeSection}
+              trigger={
+                <Button variant='outline' size='icon' className='lg:hidden'>
+                  <MenuIcon />
+                  <span className='sr-only'>Menu</span>
+                </Button>
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+export default Header
