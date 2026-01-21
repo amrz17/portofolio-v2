@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
+    "test": "jest",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "next lint",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "check-types": "tsc --noEmit"
@@ -37,12 +38,15 @@
   "devDependencies": {
     "@stylistic/eslint-plugin": "5.6.1",
     "@tailwindcss/postcss": "4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "22.19.3",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.2",
     "eslint-config-next": "16.1.1",
     "eslint-config-prettier": "10.1.8",
+    "jest": "^30.2.0",
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "0.7.2",
     "tailwindcss": "4.1.18",
