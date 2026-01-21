@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # - name: Run lint
+      # - name: Run lint // Masih Error lint not found
       #   run: npm run lint
 
       - name: Run tests
