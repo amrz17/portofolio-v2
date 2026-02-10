@@ -71,19 +71,11 @@ const Header = ({ navigationData, className }: HeaderProps) => {
   }, [activeSection])
 
   return (
-    <header
-      className={cn(
-        'bg-background sticky top-0 z-50 h-16 w-full border-b-1 transition-all duration-300',
-        {
-          'shadow-sm': isScrolled
-        },
-        className
-      )}
-    >
+    <header className={cn('fixed top-0 z-50 h-16 w-full bg-transparent transition-all duration-300', className)}>
       <div className='mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8'>
         {/* </Link> */}
         <Link href='/' className='flex items-center gap-1 text-2xl font-bold md:text-3xl dark:text-white'>
-          &lt; <span className='text-green-400'>aMer</span> &#47;&gt;
+          {/* &lt; <span>aMer</span> &#47;&gt; */}
         </Link>
 
         {/* Navigation */}
