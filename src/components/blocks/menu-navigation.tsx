@@ -54,8 +54,9 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
                   href={navItem.href}
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'hover:text-primary dark:hover:bg-accent/50 bg-transparent px-3 py-1.5 text-base!',
-                    isActive ? 'text-primary bg-accent/50 font-medium' : 'text-muted-foreground'
+                    'rounded-xl bg-transparent px-6 py-3 text-base text-white transition-all duration-300 hover:bg-white/10 hover:text-white hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:backdrop-blur-lg',
+                    isActive ? 'bg-white/10 font-medium text-white' : 'text-white',
+                    className
                   )}
                 >
                   {navItem.title}
@@ -67,7 +68,7 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
           // Section with dropdown
           return (
             <NavigationMenuItem key={navItem.title}>
-              <NavigationMenuTrigger className='dark:data-[state=open]:hover:bg-accent/50 text-muted-foreground hover:text-primary dark:hover:bg-accent/50 bg-transparent px-3 py-1.5 text-base [&>svg]:size-4'>
+              <NavigationMenuTrigger className='text-muted-foreground bg-transparent px-3 py-1.5 text-base hover:text-white dark:hover:bg-white/10 dark:data-[state=open]:hover:bg-white/10 [&>svg]:size-4'>
                 {navItem.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent className='data-[motion=from-start]:slide-in-from-left-30! data-[motion=to-start]:slide-out-to-left-30! data-[motion=from-end]:slide-in-from-right-30! data-[motion=to-end]:slide-out-to-right-30! absolute w-auto'>

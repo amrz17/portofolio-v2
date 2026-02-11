@@ -1,5 +1,5 @@
 'use client'
-import { ArrowUpRightIcon, CalendarDaysIcon } from 'lucide-react'
+import { ArrowUpRightIcon, Database, Github, Moon, Star } from 'lucide-react'
 
 import { useRouter } from 'next/navigation'
 
@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/button'
 import type { BlogPost } from '@/components/blocks/blog-component/blog-component'
 import LightRays from '@/components/lightray'
 import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 
-const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
+const HeroSection = ({ blogData, className }: { blogData: BlogPost[]; className: string }) => {
   const featuredPosts = blogData.filter(post => post.featured)
   const router = useRouter()
 
@@ -34,10 +35,10 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
       <div className='absolute h-full w-full'>
         <LightRays
           raysOrigin='top-center'
-          raysColor='#af3dff'
+          // raysColor='#af3dff'
           raysSpeed={1}
           lightSpread={0.5}
-          rayLength={3}
+          rayLength={6}
           followMouse={true}
           mouseInfluence={0.1}
           noiseAmount={0}
@@ -50,27 +51,31 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
         />
       </div>
 
-      <div className='-pt-16 relative container mx-auto h-full px-4 lg:gap-8'>
+      <div className='-pt-16 relative container mx-auto h-full px-8 lg:gap-8'>
         {/*  */}
-        <div className='flex h-full flex-col items-center justify-center lg:mx-auto lg:h-full lg:w-1/2 lg:flex-row-reverse lg:items-center lg:justify-center lg:text-left'>
+        <div className='flex h-full flex-col items-center justify-center lg:mx-auto lg:h-full lg:w-3/4 lg:flex-row-reverse lg:items-center lg:justify-center lg:gap-16 lg:text-left xl:w-1/2'>
+          <Star className='absolute top-1/2 left-10 h-8 w-8 -translate-x-1/2 -translate-y-1/2 animate-pulse [animation-duration:2.5s] lg:left-20 lg:block' />
+          <Star className='absolute top-1/4 left-10 h-8 w-8 -translate-x-1/2 -translate-y-1/2 animate-pulse [animation-duration:2.5s] lg:left-70 lg:block' />
+          {/* <Moon className='absolute top-1/2 right-20 h-8 w-8 -translate-x-1/2 -translate-y-1/2 [animation-duration:2.5s] hover:animate-spin' /> */}
+          <Star className='absolute top-1/4 right-8 h-8 w-8 -translate-x-1/2 -translate-y-1/2 animate-pulse [animation-duration:2.5s] lg:right-20 lg:block' />
+
           <img
-            src='/images/aMer.png'
+            src='/images/mr.png'
             alt='Profile Picture'
-            className='mx-auto mb-6 h-[12rem] w-[12rem] rounded-full object-cover lg:mb-8'
-            style={{ minWidth: '160px', minHeight: '160px' }}
+            className={cn('glow h-[200px] w-[200px] rounded-full object-cover', className)}
           />
-          <div className='flex flex-col items-start lg:gap-4'>
+          <div className='flex flex-col items-start justify-center lg:gap-4'>
             <p className='text-lg sm:text-2xl lg:text-3xl'>Hi, I'm, </p>
             <p className='text-2xl font-extrabold sm:text-4xl lg:text-5xl'>Muhammad Amer</p>
             <p className='sm:text-2xl lg:text-3xl'>a Software Engineer</p>
             <Button
-              className='hover:px-2 sm:hover:px-6 lg:hover:px-12'
+              className='mt-2 hover:px-5 sm:hover:px-6 lg:hover:px-12'
               variant='outline'
               size='lg'
               onClick={() => router.push('')}
             >
               Now me Better
-              <ArrowUpRightIcon className='h-4 w-4' />
+              <ArrowUpRightIcon className='mx-2 h-4' />
             </Button>
           </div>
         </div>

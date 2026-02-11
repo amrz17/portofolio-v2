@@ -74,7 +74,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
     <header className={cn('fixed top-0 z-50 h-16 w-full bg-transparent transition-all duration-300', className)}>
       <div className='mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8'>
         {/* </Link> */}
-        <Link href='/' className='flex items-center gap-1 text-2xl font-bold md:text-3xl dark:text-white'>
+        <Link href='/' className='hover:texdark flex items-center gap-1 text-2xl font-bold md:text-3xl dark:text-white'>
           {/* &lt; <span>aMer</span> &#47;&gt; */}
         </Link>
 
@@ -83,25 +83,10 @@ const Header = ({ navigationData, className }: HeaderProps) => {
 
         {/* Actions */}
         <div className='flex gap-3'>
-          <ModeToggle />
-          {/* <Button variant='outline' className='max-sm:hidden' asChild>
-            <Link href='#get-in-touch'>Get in Touch</Link>
-          </Button> */}
+          {/* <ModeToggle /> */}
 
           {/* Navigation for small screens */}
           <div className='flex gap-3'>
-            {/* <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant='outline' size='icon' className='sm:hidden' asChild>
-                  <Link href='#get-in-touch'>
-                    <MailIcon />
-                    <span className='sr-only'>Get in Touch</span>
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Get in Touch</TooltipContent>
-            </Tooltip> */}
-
             <MenuDropdown
               align='end'
               navigationData={navigationData}
