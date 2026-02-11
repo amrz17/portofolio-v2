@@ -20,7 +20,7 @@ const jsonLd = {
 const Home = () => {
   return (
     <div>
-      <HeroSection blogData={blogPosts} />
+      <HeroSection blogData={blogPosts} className='' />
       {/* Add JSON-LD to your page */}
       <script
         type='application/ld+json'
